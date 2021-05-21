@@ -1,45 +1,47 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class FavoritesTest < ApplicationSystemTestCase
   setup do
     @favorite = favorites(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit favorites_url
-    assert_selector "h1", text: "Favorites"
+    assert_selector 'h1', text: 'Favorites'
   end
 
-  test "creating a Favorite" do
+  test 'creating a Favorite' do
     visit favorites_url
-    click_on "New Favorite"
+    click_on 'New Favorite'
 
-    fill_in "Post", with: @favorite.post_id
-    fill_in "User", with: @favorite.user_id
-    click_on "Create Favorite"
+    fill_in 'Post', with: @favorite.post_id
+    fill_in 'User', with: @favorite.user_id
+    click_on 'Create Favorite'
 
-    assert_text "Favorite was successfully created"
-    click_on "Back"
+    assert_text 'Favorite was successfully created'
+    click_on 'Back'
   end
 
-  test "updating a Favorite" do
+  test 'updating a Favorite' do
     visit favorites_url
-    click_on "Edit", match: :first
+    click_on 'Edit', match: :first
 
-    fill_in "Post", with: @favorite.post_id
-    fill_in "User", with: @favorite.user_id
-    click_on "Update Favorite"
+    fill_in 'Post', with: @favorite.post_id
+    fill_in 'User', with: @favorite.user_id
+    click_on 'Update Favorite'
 
-    assert_text "Favorite was successfully updated"
-    click_on "Back"
+    assert_text 'Favorite was successfully updated'
+    click_on 'Back'
   end
 
-  test "destroying a Favorite" do
+  test 'destroying a Favorite' do
     visit favorites_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on 'Destroy', match: :first
     end
 
-    assert_text "Favorite was successfully destroyed"
+    assert_text 'Favorite was successfully destroyed'
   end
 end

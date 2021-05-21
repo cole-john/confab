@@ -44,11 +44,11 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'ancestry'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'spring'
-  gem 'ancestry'
 end
 
 group :test do
@@ -81,7 +81,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
-  #gem 'draft_generators', github: 'firstdraft/draft_generators', branch: 'winter-2020'
+  # gem 'draft_generators', github: 'firstdraft/draft_generators', branch: 'winter-2020'
   gem 'rails_db'
   gem 'rails-erd'
   gem 'web_git', github: 'firstdraft/web_git', branch: 'spring2020'

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RepliesController < ApplicationController
-  before_action :set_reply, only: %i[ show edit update destroy ]
+  before_action :set_reply, only: %i[show edit update destroy]
 
   # GET /replies or /replies.json
   def index
@@ -7,8 +9,7 @@ class RepliesController < ApplicationController
   end
 
   # GET /replies/1 or /replies/1.json
-  def show
-  end
+  def show; end
 
   # GET /replies/new
   def new
@@ -16,8 +17,7 @@ class RepliesController < ApplicationController
   end
 
   # GET /replies/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /replies or /replies.json
   def create
@@ -25,7 +25,7 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       if @reply.save
-        format.html { redirect_to @reply, notice: "Reply was successfully created." }
+        format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
         format.json { render :show, status: :created, location: @reply }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class RepliesController < ApplicationController
   def update
     respond_to do |format|
       if @reply.update(reply_params)
-        format.html { redirect_to @reply, notice: "Reply was successfully updated." }
+        format.html { redirect_to @reply, notice: 'Reply was successfully updated.' }
         format.json { render :show, status: :ok, location: @reply }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,19 +51,20 @@ class RepliesController < ApplicationController
   def destroy
     @reply.destroy
     respond_to do |format|
-      format.html { redirect_to replies_url, notice: "Reply was successfully destroyed." }
+      format.html { redirect_to replies_url, notice: 'Reply was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reply
-      @reply = Reply.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def reply_params
-      params.require(:reply).permit(:author_id, :post_id, :body, :repliable_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reply
+    @reply = Reply.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def reply_params
+    params.require(:reply).permit(:author_id, :post_id, :body, :repliable_id)
+  end
 end
