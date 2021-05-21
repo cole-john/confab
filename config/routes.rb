@@ -2,6 +2,8 @@
 
 Rails.application.routes.draw do
 
+
+  resources :replies
   root "posts#index"
 
   devise_for :users

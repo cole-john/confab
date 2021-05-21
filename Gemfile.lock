@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/firstdraft/draft_generators.git
-  revision: b749884a069c7f06472da628f604c246655d6495
-  branch: winter-2020
-  specs:
-    draft_generators (0.0.3)
-      devise
-      indefinite_article
-
-GIT
   remote: https://github.com/firstdraft/web_git.git
   revision: d0fd85eef2d49b00aaced9a148f500cbb4550394
   branch: spring2020
@@ -86,6 +77,8 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ancestry (4.0.0)
+      activerecord (>= 5.2.4.5)
     annotate (3.1.1)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
@@ -164,8 +157,6 @@ GEM
       jsonapi-serializable (~> 0.1)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
-    indefinite_article (0.2.4)
-      activesupport
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jsonapi-renderer (0.2.2)
@@ -385,6 +376,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
+  ancestry
   annotate
   awesome_print
   better_errors
@@ -394,7 +386,6 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
-  draft_generators!
   faker
   graphiti (~> 1.2)
   jbuilder (~> 2.7)
