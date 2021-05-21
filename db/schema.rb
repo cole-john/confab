@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_013247) do
+ActiveRecord::Schema.define(version: 2021_05_21_020616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2021_05_21_013247) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.integer "post_type"
     t.bigint "author_id", null: false
     t.integer "replies_count", default: 0
     t.integer "votes_count", default: 0
@@ -66,7 +65,21 @@ ActiveRecord::Schema.define(version: 2021_05_21_013247) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "fan_id_id", null: false
+    t.integer "vote_status"
+    t.integer "votes_count", default: 0
+    t.integer "favorites_count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fan_id_id"], name: "index_votes_on_fan_id_id"
+    t.index ["post_id"], name: "index_votes_on_post_id"
+  end
+
   add_foreign_key "posts", "users", column: "author_id"
   add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users", column: "author_id"
+  add_foreign_key "votes", "posts"
+  add_foreign_key "votes", "users", column: "fan_id_id"
 end

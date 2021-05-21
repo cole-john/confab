@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
 
 
+  resources :votes
   resources :replies
   root "posts#index"
 

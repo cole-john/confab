@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_id: one
+  fan_id: one
+  status: 1
+
+two:
+  post_id: two
+  fan_id: two
+  status: 1
