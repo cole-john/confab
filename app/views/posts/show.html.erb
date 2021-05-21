@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+<p>
+  <strong>Post type:</strong>
+  <%= @post.post_type %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @post.author_id %>
+</p>
+
+<p>
+  <strong>Replies count:</strong>
+  <%= @post.replies_count %>
+</p>
+
+<p>
+  <strong>Votes count:</strong>
+  <%= @post.votes_count %>
+</p>
+
+<p>
+  <strong>Favorites count:</strong>
+  <%= @post.favorites_count %>
+</p>
+
+<p>
+  <strong>Follows count:</strong>
+  <%= @post.follows_count %>
+</p>
+
+<p>
+  <strong>Tags count:</strong>
+  <%= @post.tags_count %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
