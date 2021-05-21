@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_032135) do
+ActiveRecord::Schema.define(version: 2021_05_21_032508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(version: 2021_05_21_032135) do
     t.index ["author_id"], name: "index_replies_on_author_id"
     t.index ["post_id"], name: "index_replies_on_post_id"
     t.index ["repliable_type", "repliable_id"], name: "index_replies_on_repliable"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "tag_joins_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
