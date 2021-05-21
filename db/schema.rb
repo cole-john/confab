@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_032508) do
+ActiveRecord::Schema.define(version: 2021_05_21_032713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(version: 2021_05_21_032508) do
     t.index ["repliable_type", "repliable_id"], name: "index_replies_on_repliable"
   end
 
+  create_table "tag_joins", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_tag_joins_on_post_id"
+    t.index ["tag_id"], name: "index_tag_joins_on_tag_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.integer "tag_joins_count"
@@ -109,6 +118,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_032508) do
   add_foreign_key "posts", "users", column: "author_id"
   add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users", column: "author_id"
+  add_foreign_key "tag_joins", "posts"
+  add_foreign_key "tag_joins", "tags"
   add_foreign_key "votes", "posts"
   add_foreign_key "votes", "users", column: "fan_id_id"
 end
