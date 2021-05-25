@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_040714) do
+ActiveRecord::Schema.define(version: 2021_05_25_042832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "post_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_favorites_on_post_id"
+    t.string "favoritable_type", null: false
+    t.bigint "favoritable_id", null: false
+    t.index ["favoritable_type", "favoritable_id"], name: "index_favorites_on_favoritable"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
@@ -110,7 +111,6 @@ ActiveRecord::Schema.define(version: 2021_05_25_040714) do
     t.index ["post_id"], name: "index_votes_on_post_id"
   end
 
-  add_foreign_key "favorites", "posts"
   add_foreign_key "favorites", "users"
   add_foreign_key "follows", "posts"
   add_foreign_key "follows", "users"

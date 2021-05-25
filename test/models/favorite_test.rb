@@ -4,20 +4,20 @@
 #
 # Table name: favorites
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  post_id    :bigint           not null
-#  user_id    :bigint           not null
+#  id               :bigint           not null, primary key
+#  favoritable_type :string           not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  favoritable_id   :bigint           not null
+#  user_id          :bigint           not null
 #
 # Indexes
 #
-#  index_favorites_on_post_id  (post_id)
-#  index_favorites_on_user_id  (user_id)
+#  index_favorites_on_favoritable  (favoritable_type,favoritable_id)
+#  index_favorites_on_user_id      (user_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (post_id => posts.id)
 #  fk_rails_...  (user_id => users.id)
 #
 require 'test_helper'

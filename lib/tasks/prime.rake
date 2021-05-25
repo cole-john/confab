@@ -66,12 +66,14 @@ desc "Sample data for local development environment"
       rand(3).times do
         reply = post.replies.create(
           author_id: User.all.sample.id,
-          body: Faker::Hipster.paragraphs(number: rand(3)),
+          body: Faker::ChuckNorris.fact,
           repliable_type: "Post",
-          repliable_id: post.id
+          #repliable_id: post.id
         )
       end
     end
+
+    replies = Reply.all
 
     # Create Favorites for Posts
 
@@ -84,8 +86,20 @@ desc "Sample data for local development environment"
     
 
     # Create Replies for Replies
+    replies.each do |reply|
+      rand(3).times do
+        new_reply = reply.replies.create(
+          author_id: User.all.sample.id,
+          body: Faker::Lorem.sentences(number: rand(1..2)),
+          repliable_type: "Reply",
+          #repliable_id: post.id
+        )
+      end
+    end
+
 
     # Create Favorites for Replies
+    # Not doing right now -> adjust Favorite model to include polymorphic reference to be used on Post and Reply
 
     # Create Votes for Replies
 
