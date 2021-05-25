@@ -21,9 +21,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Favorite < ApplicationRecord
-  belongs_to :post, counter_cache: true
   belongs_to :user, counter_cache: true
+  belongs_to :favoritable, polymorphic: true
 
-  # To make Replies and Posts favoritable, consider adjusting model to favorite being polymorphic
-  validates :user, uniqueness: { scope: :post }
+
+  validates :user, :uniqueness => { :scope => [:favoritable_type, :favoritable_id] }
 end

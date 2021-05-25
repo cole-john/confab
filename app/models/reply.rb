@@ -25,6 +25,13 @@ class Reply < ApplicationRecord
   belongs_to :author, class_name: 'User', counter_cache: true
   belongs_to :repliable, polymorphic: true
 
+
   has_many :votes, foreign_key: 'post_id', dependent: :destroy
-  has_many :replies, as: :repliable
+  has_many :replies, as: :repliable, dependent: :destroy
+  has_many :favorites, as: :favoritable, dependent: :destroy
+
+
+  scope :by_replies, -> { order(replies_count: :desc) }
+  scope :by_favorites, -> { order(favorites_count: :desc) }
+  scope :by_votes, -> { order(votes_count: :desc) }
 end

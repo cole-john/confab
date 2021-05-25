@@ -30,7 +30,7 @@ class Post < ApplicationRecord
   has_many :replies, as: :repliable, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :follows, dependent: :destroy
-  has_many :favorites, dependent: :destroy
+  has_many :favorites, as: :favoritable, dependent: :destroy
   has_many :tags, class_name: 'TagJoin', dependent: :destroy
 
   validates :title, presence: true
