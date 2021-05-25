@@ -12,8 +12,9 @@
 #
 # Indexes
 #
-#  index_follows_on_post_id  (post_id)
-#  index_follows_on_user_id  (user_id)
+#  index_follows_on_post_id              (post_id)
+#  index_follows_on_user_id              (user_id)
+#  index_follows_on_user_id_and_post_id  (user_id,post_id) UNIQUE
 #
 # Foreign Keys
 #
@@ -23,4 +24,7 @@
 class Follow < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :post, counter_cache: true
+
+  
+  validates :user, uniqueness: { scope: :post }
 end

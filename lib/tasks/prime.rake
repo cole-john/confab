@@ -17,7 +17,7 @@ desc "Sample data for local development environment"
 
     # Create Users
     usernames = Array.new {Faker::Name.first_name}
-    10.times do
+    12.times do
       usernames << Faker::Name.first_name
     end
     
@@ -29,7 +29,6 @@ desc "Sample data for local development environment"
         email: "#{username}@example.com",
         username: username.downcase,
         password: "password",
-        private: [true, false].sample,
         avatar_img: "https://robohash.org/#{rand(9999)}",
         bio: Faker::Hipster.paragraph ,
         website: Faker::Internet.url(host: 'example.com')
@@ -40,28 +39,40 @@ desc "Sample data for local development environment"
 
     # Create Posts for each User
     users.each do |user|
-      rand(15).times do
-        post = user.own_posts.create(
+      rand(10).times do
+        post = user.posts.create(
           title: Faker::Hipster.sentence,
           body: Faker::Hipster.paragraphs(number: rand(3))
         )
       end
     end
 
-    posts = Posts.all
+    posts = Post.all
+    
+    test_user = users.sample
+    p "Username: #{test_user.username} and ID: #{test_user.id}"
 
     # Create Follows for Posts
+    posts.each do |post|
+      rand(10).times do
+        follow = post.follows.create(
+          user_id: users.sample.id
+        )
+      end
+    end
     
+    # Create Replies for Posts
+
 
     # Create Favorites for Posts
 
+
     # Create Votes for Posts
+
 
     # Create Tags for Posts
 
     
-
-    # Create Replies for Posts
 
     # Create Replies for Replies
 
@@ -78,7 +89,9 @@ desc "Sample data for local development environment"
     p "There are now #{Post.count} posts."
     p "There are now #{Reply.count} replies."
     p "There are now #{Favorite.count} favorited posts or replies."
-    p "There are now #{Follow.count} followed posts or replies."
-    p "There are now #{Votes.count} posts or replies with votes."
+    p "There are now #{Follow.count} follows posts or replies."
+    p "There are now #{Vote.count} posts or replies with votes."
     p "There are now #{TagJoin.count} tags used on posts."
+
+  end
 end
