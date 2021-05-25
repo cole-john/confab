@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_034005) do
+ActiveRecord::Schema.define(version: 2021_05_25_040714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -51,14 +51,12 @@ ActiveRecord::Schema.define(version: 2021_05_25_034005) do
 
   create_table "replies", force: :cascade do |t|
     t.bigint "author_id", null: false
-    t.bigint "post_id", null: false
     t.text "body"
     t.string "repliable_type", null: false
     t.bigint "repliable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_id"], name: "index_replies_on_author_id"
-    t.index ["post_id"], name: "index_replies_on_post_id"
     t.index ["repliable_type", "repliable_id"], name: "index_replies_on_repliable"
   end
 
@@ -117,7 +115,6 @@ ActiveRecord::Schema.define(version: 2021_05_25_034005) do
   add_foreign_key "follows", "posts"
   add_foreign_key "follows", "users"
   add_foreign_key "posts", "users", column: "author_id"
-  add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users", column: "author_id"
   add_foreign_key "tag_joins", "posts"
   add_foreign_key "tag_joins", "tags"

@@ -39,7 +39,7 @@ desc "Sample data for local development environment"
 
     # Create Posts for each User
     users.each do |user|
-      rand(10).times do
+      rand(5).times do
         post = user.posts.create(
           title: Faker::Hipster.sentence,
           body: Faker::Hipster.paragraphs(number: rand(3))
@@ -49,12 +49,12 @@ desc "Sample data for local development environment"
 
     posts = Post.all
     
-    test_user = users.sample
-    p "Username: #{test_user.username} and ID: #{test_user.id}"
+   # test_user = users.sample
+   # p "Username: #{test_user.username} and ID: #{test_user.id}"
 
     # Create Follows for Posts
     posts.each do |post|
-      rand(10).times do
+      rand(3).times do
         follow = post.follows.create(
           user_id: users.sample.id
         )
@@ -62,7 +62,16 @@ desc "Sample data for local development environment"
     end
     
     # Create Replies for Posts
-
+    posts.each do |post|
+      rand(3).times do
+        reply = post.replies.create(
+          author_id: User.all.sample.id,
+          body: Faker::Hipster.paragraphs(number: rand(3)),
+          repliable_type: "Post",
+          repliable_id: post.id
+        )
+      end
+    end
 
     # Create Favorites for Posts
 
@@ -89,7 +98,7 @@ desc "Sample data for local development environment"
     p "There are now #{Post.count} posts."
     p "There are now #{Reply.count} replies."
     p "There are now #{Favorite.count} favorited posts or replies."
-    p "There are now #{Follow.count} follows posts or replies."
+    p "There are now #{Follow.count} posts with follows."
     p "There are now #{Vote.count} posts or replies with votes."
     p "There are now #{TagJoin.count} tags used on posts."
 

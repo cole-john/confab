@@ -10,19 +10,16 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  author_id      :bigint           not null
-#  post_id        :bigint           not null
 #  repliable_id   :bigint           not null
 #
 # Indexes
 #
 #  index_replies_on_author_id  (author_id)
-#  index_replies_on_post_id    (post_id)
 #  index_replies_on_repliable  (repliable_type,repliable_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (author_id => users.id)
-#  fk_rails_...  (post_id => posts.id)
 #
 class Reply < ApplicationRecord
   belongs_to :author, class_name: 'User', counter_cache: true
