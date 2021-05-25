@@ -37,6 +37,13 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: 'author_id', class_name: 'Post', dependent: :destroy
   has_many :replies, foreign_key: 'author_id', class_name: 'Reply', dependent: :destroy
   has_many :votes, foreign_key: 'fan_id', class_name: 'Vote', dependent: :destroy
-  has_many :favorites, dependent: :destroy
+  has_many :favorites,dependent: :destroy
   has_many :follows, dependent: :destroy
+
+  has_many :favorite_posts, through: :favorites, source: :post
+  has_many :favorite_replies, through: :favorites, source: :reply
+  has_many :followed_posts, through: :follows, source: :post
+
+  
+  validates :username, presence: true, uniqueness: true
 end

@@ -32,4 +32,11 @@ class Post < ApplicationRecord
   has_many :follows, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :tags, class_name: 'TagJoin', dependent: :destroy
+
+  validates :title, presence: true
+  validates :body, presence: true
+
+  scope :by_replies, -> { order(replies_count: :desc) }
+  scope :by_favorites, -> { order(favorites_count: :desc) }
+  scope :by_votes, -> { order(votes_count: :desc) }
 end
