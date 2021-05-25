@@ -85,7 +85,17 @@ desc "Sample data for local development environment"
     end
 
     # Create Votes for Posts
+    status = { down: 0, up: 1, star: 2 }
 
+    posts.each do |post|
+      if rand < 0.5
+        vote = post.votes.create(
+          user_id: User.all.sample.id,
+          vote_status: status[status.keys.sample],
+          votable_type: "Post"
+        )
+      end
+    end
 
     # Create Tags for Posts
 

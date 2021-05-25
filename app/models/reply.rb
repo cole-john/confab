@@ -26,7 +26,7 @@ class Reply < ApplicationRecord
   belongs_to :repliable, polymorphic: true
 
 
-  has_many :votes, foreign_key: 'post_id', dependent: :destroy
+  has_many :votes, as: :votable, dependent: :destroy
   has_many :replies, as: :repliable, dependent: :destroy
   has_many :favorites, as: :favoritable, dependent: :destroy
 
