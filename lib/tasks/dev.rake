@@ -66,7 +66,8 @@ require 'faker'
           reply = post.replies.create(
             author_id: User.all.sample.id,
             body: Faker::Quote.famous_last_words,
-            repliable_type: "Post"
+            repliable_type: "Post",
+            repliable_id: post.id
           )
         end
       end
@@ -78,7 +79,8 @@ require 'faker'
         if rand < 0.5
           favorite = post.favorites.create(
             user_id: User.all.sample.id,
-            favoritable_type: "Post"
+            favoritable_type: "Post",
+            favoritable_id: post.id
           )
         end
       end
@@ -91,7 +93,8 @@ require 'faker'
           vote = post.votes.create(
             user_id: User.all.sample.id,
             vote_status: status[status.keys.sample],
-            votable_type: "Post"
+            votable_type: "Post",
+            votable_id: post.id
           )
         end
       end
@@ -120,12 +123,14 @@ require 'faker'
               author_id: User.all.sample.id,
               body: Faker::Hacker.say_something_smart,
               repliable_type: "Reply",
+              repliable_id: reply.id
             )
           else
               new_reply = reply.replies.create(
                 author_id: User.all.sample.id,
                 body: Faker::TvShows::RickAndMorty.quote,
                 repliable_type: "Reply",
+                repliable_id: reply.id
               )
           end
         end
@@ -136,7 +141,8 @@ require 'faker'
         if rand < 0.5
           favorite = reply.favorites.create(
             user_id: User.all.sample.id,
-            favoritable_type: "Reply"
+            favoritable_type: "Reply",
+            favoritable_id: reply.id
           )
         end
       end
@@ -147,7 +153,8 @@ require 'faker'
           vote = reply.votes.create(
             user_id: User.all.sample.id,
             vote_status: status[status.keys.sample],
-            votable_type: "Reply"
+            votable_type: "Reply",
+            votable_id: reply.id
           )
         end
       end
