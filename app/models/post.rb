@@ -31,7 +31,8 @@ class Post < ApplicationRecord
   has_many :votes, as: :votable, dependent: :destroy
   has_many :follows, dependent: :destroy
   has_many :favorites, as: :favoritable, dependent: :destroy
-  has_many :tags, though: :tag_joins, dependent: :destroy
+  has_many :tag_joins, dependent: :destroy
+  has_many :tags, through: :tag_joins, dependent: :destroy
 
   validates :title, presence: true
   validates :body, presence: true

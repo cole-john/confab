@@ -24,5 +24,5 @@ class TagJoin < ApplicationRecord
   belongs_to :post, counter_cache: :tags_count
   belongs_to :tag, counter_cache: true
 
-  validates :post, uniqueness: { scope: :tag }
+  validates :tag, uniqueness: { scope: :post }
 end

@@ -7,6 +7,7 @@ require 'faker'
       starting = Time.now
 
       # Clean the dB
+      TagJoin.delete_all
       Tag.delete_all
       Vote.delete_all
       Follow.delete_all
@@ -49,9 +50,6 @@ require 'faker'
       end
 
       posts = Post.all
-      
-    # test_user = users.sample
-    # p "Username: #{test_user.username} and ID: #{test_user.id}"
 
       # Create Follows for Posts
       posts.each do |post|
@@ -99,17 +97,21 @@ require 'faker'
       end
 
       # Create Tags and then connect to Posts
-      10.times do
+      15.times do
         Tag.create(name: Faker::Restaurant.type)
       end
-      tags = Tag.all
-      posts.each do |post|
-        tag = 
-
-      end
       
-    
+      tags = Tag.all
 
+      posts.each do |post|
+        rand(1..2).times do 
+          TagJoin.create(
+            tag_id: tags.sample.id,
+            post_id: post.id
+          )
+        end
+      end
+    
       # Create Replies for Replies
       replies.each do |reply|
         rand(3).times do
@@ -128,7 +130,6 @@ require 'faker'
           end
         end
       end
-
 
       # Create Favorites for Replies
       replies.each do |reply|
