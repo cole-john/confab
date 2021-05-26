@@ -9,4 +9,10 @@ Rails.application.routes.draw do
   resources :votes
   resources :replies
   resources :follows
+
+  get ":username/following" => "posts#following", as: :following_posts
+  get ":username/favorites" => "posts#favorites", as: :favorite_posts
+
+  get "/:username" => "users#show", as: :user
+
 end
