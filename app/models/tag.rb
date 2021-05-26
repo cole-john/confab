@@ -11,5 +11,5 @@
 #  updated_at      :datetime         not null
 #
 class Tag < ApplicationRecord
-  has_many :tag_joins, dependent: :destroy
+  has_many :posts, through: :tag_joins, dependent: :destroy
 end
