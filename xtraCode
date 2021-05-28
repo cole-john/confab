@@ -1,0 +1,9 @@
+  # To make a Create New Post button, which isn't needed because its in the navigation bar
+  <div class="ml-auto row align-self-center">
+    <%= link_to new_post_path, class: "nav-link" do %>
+    <i class="fas fa-plus-square"></i></i>
+    Create Post
+    <% end %>
+  </div>
+
+<%= link_to 'New Post', new_post_path %>

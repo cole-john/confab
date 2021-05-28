@@ -44,7 +44,7 @@ require 'faker'
         rand(3).times do
           post = user.posts.create(
             title: Faker::Hipster.sentence,
-            body: Faker::Hipster.paragraph(sentence_count: rand(1..3))
+            body: Faker::Hipster.paragraph(sentence_count: rand(3..10))
           )
         end
       end
