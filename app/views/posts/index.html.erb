@@ -1,37 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
+<div class="container d-flex h-100">
+  <div class="row align-self-center"><h2>Posts</h2></div>
+  <div class="ml-auto row align-self-center">
+    <%= link_to new_post_path, class: "nav-link" do %>
+    <i class="fas fa-plus-square"></i></i>
+    Create Post
+    <% end %>
+  </div>
+</div>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Author</th>
-      <th>Replies count</th>
-      <th>Votes count</th>
-      <th>Favorites count</th>
-      <th>Follows count</th>
-      <th>Tags count</th>
-      <th colspan="3"></th>
+      <th scope="col">Title</th>
+      <th scope="col">Body</th>
+      <th scope="col">Author</th>
+      <th scope="col">Replies</th>
+      <th colspan="3" scope="col"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.title %></td>
+        <th scope="col"><%= post.title %></th>
         <td><%= post.body %></td>
-        <td><%= post.author_id %></td>
-        <td><%= post.replies_count %></td>
-        <td><%= post.votes_count %></td>
-        <td><%= post.favorites_count %></td>
-        <td><%= post.follows_count %></td>
-        <td><%= post.tags_count %></td>
+        <td><%= post.author.username %></td>
+        <td><%= post.replies.count %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      
+      <% post.replies.each do |reply| %>
+         <tr> 
+            <td></td>
+            <td><%= reply.body %></td>
+            <td><%= reply.author.username %></td>
+            <td colspan="4"></td>
+          </tr>
+      <% end %>
+      
     <% end %>
   </tbody>
 </table>
