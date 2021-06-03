@@ -135,13 +135,13 @@ require 'faker'
                 parent_id: reply.id
               )
           end
-          if rand <0.5
+          if rand <0.75
             another_reply = new_reply.replies.create(
               author_id: User.all.sample.id,  
               body: Faker::TvShows::RickAndMorty.quote,
               repliable_type: "Reply",
               repliable_id: new_reply.id,
-              parent_id: new_reply.id
+              parent_id: Reply.all.sample.id
             )
           end
         end
