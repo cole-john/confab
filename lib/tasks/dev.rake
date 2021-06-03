@@ -137,7 +137,7 @@ require 'faker'
           end
           if rand <0.5
             another_reply = new_reply.replies.create(
-              author_id: User.all.sample.id,
+              author_id: User.all.sample.id,  
               body: Faker::TvShows::RickAndMorty.quote,
               repliable_type: "Reply",
               repliable_id: new_reply.id,
