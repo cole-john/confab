@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_044525) do
+ActiveRecord::Schema.define(version: 2021_06_03_033422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2021_05_25_044525) do
     t.bigint "repliable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_replies_on_ancestry"
     t.index ["author_id"], name: "index_replies_on_author_id"
     t.index ["repliable_type", "repliable_id"], name: "index_replies_on_repliable"
   end

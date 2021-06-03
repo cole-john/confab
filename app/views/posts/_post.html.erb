@@ -15,10 +15,9 @@
 
     <% post.replies.each do |reply| %>
         <%= render "posts/reply", reply: reply %> 
-    <% if reply.replies.count > 0 %>
-        <% reply.replies.each do |test| %>
-        <div class="pl-5"> <%= render "posts/reply", reply: test %>  </div>
-        <% end %>
-    <% end %>
+    
+        <% reply.descendants.each do |descendants| %>
+            <div class="pl-5"> <%= render "posts/reply", reply: descendants %>  </div>
+         <% end %>
 
     <% end %>

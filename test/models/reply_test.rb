@@ -5,6 +5,7 @@
 # Table name: replies
 #
 #  id             :bigint           not null, primary key
+#  ancestry       :string
 #  body           :text
 #  repliable_type :string           not null
 #  created_at     :datetime         not null
@@ -14,6 +15,7 @@
 #
 # Indexes
 #
+#  index_replies_on_ancestry   (ancestry)
 #  index_replies_on_author_id  (author_id)
 #  index_replies_on_repliable  (repliable_type,repliable_id)
 #

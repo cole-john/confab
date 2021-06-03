@@ -123,14 +123,16 @@ require 'faker'
               author_id: User.all.sample.id,
               body: Faker::Hacker.say_something_smart,
               repliable_type: "Reply",
-              repliable_id: reply.id
+              repliable_id: reply.id,
+              parent_id: reply.id
             )
           else
               new_reply = reply.replies.create(
                 author_id: User.all.sample.id,
                 body: Faker::TvShows::RickAndMorty.quote,
                 repliable_type: "Reply",
-                repliable_id: reply.id
+                repliable_id: reply.id,
+                parent_id: reply.id
               )
           end
         end

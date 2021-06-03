@@ -44,8 +44,12 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'ancestry'
+  gem 'annotate'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'bullet'
   gem 'faker'
+  gem 'rails-erd'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
@@ -63,12 +67,14 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-# appdev gems
+# Additional Gems
 # ==================
 gem 'active_link_to'
+gem 'ancestry'
 gem 'awesome_print'
 gem 'devise'
 gem 'graphiti', '~> 1.2'
+gem 'graphviz'
 gem 'pry-rails'
 gem 'pundit'
 gem 'rack-canonical-host'
@@ -76,13 +82,11 @@ gem 'rollbar'
 gem 'skylight'
 gem 'strip_attributes'
 gem 'validate_url'
+
+#appdev gems
+# ==================
 group :development do
-  gem 'annotate'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'bullet'
   # gem 'draft_generators', github: 'firstdraft/draft_generators', branch: 'winter-2020'
   gem 'rails_db'
-  gem 'rails-erd'
   gem 'web_git', github: 'firstdraft/web_git', branch: 'spring2020'
 end
