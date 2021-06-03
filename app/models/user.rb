@@ -41,6 +41,7 @@ class User < ApplicationRecord
   has_many :follows, dependent: :destroy
 
   has_many :favorite_posts, through: :favorites, source: :favoritable, source_type: "Post"
+  # Delegated Types may be a better fit versus polymorphism for favorites - RB to send link
   has_many :favorite_replies, through: :favorites, source: :favoritable, source_type: "Reply"
   has_many :followed_posts, through: :follows, source: :post
 

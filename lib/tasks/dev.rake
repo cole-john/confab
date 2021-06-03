@@ -65,7 +65,7 @@ require 'faker'
         rand(3).times do
           reply = post.replies.create(
             author_id: User.all.sample.id,
-            body: Faker::Quote.famous_last_words,
+            body: Faker::Movies::PrincessBride.quote,
             repliable_type: "Post",
             repliable_id: post.id
           )
