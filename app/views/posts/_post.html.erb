@@ -13,10 +13,8 @@
 
 
     <% post.replies.each do |reply| %>
-        <%= render "posts/reply", reply: reply %> 
-    
-        <% reply.descendants.each do |descendant| %>
-            <div class="pl-5"> <%= render "posts/reply", reply: descendant %>  </div>
-         <% end %>
+        
+        <%= render "posts/reply", reply: reply %>
+        <%= render collection: reply.children, partial: "posts/reply", as: :reply %>
 
     <% end %>
