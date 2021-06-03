@@ -1,7 +1,6 @@
 <div class="pt-1 pl-4 d-flex">
-    <div class=""><%= reply.body %></div>
+    <div class=""> <%= reply.id %> - <%= reply.parent_id %> - <%= reply.body %></div>
 </div>
 <div class="pl-5 pb-2 d-flex flex-row">
-    <div class="align-self-center"><%= image_tag reply.author.avatar_img, class: "img-fluid rounded avatar" %></div>
     <div class="align-self-center"><small class="text-muted">Posted on <%= reply.created_at.strftime("%m-%d-%Y") %> at <%= reply.created_at.strftime("%I:%M:%S") %> by <%= reply.author.username %></small></div>
 </div>

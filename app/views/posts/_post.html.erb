@@ -8,7 +8,6 @@
     </div>
 
     <div class="d-flex flex-row-reverse">
-        <%= image_tag post.author.avatar_img, class: "img-fluid rounded avatar"%>
         <div><small class="text-muted">Posted on <%= post.created_at.strftime("%m-%d-%Y") %> at <%= post.created_at.strftime("%I:%M:%S") %> by <%= post.author.username %></small></div>
     </div>
 
@@ -16,8 +15,8 @@
     <% post.replies.each do |reply| %>
         <%= render "posts/reply", reply: reply %> 
     
-        <% reply.descendants.each do |descendants| %>
-            <div class="pl-5"> <%= render "posts/reply", reply: descendants %>  </div>
+        <% reply.descendants.each do |descendant| %>
+            <div class="pl-5"> <%= render "posts/reply", reply: descendant %>  </div>
          <% end %>
 
     <% end %>
