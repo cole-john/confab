@@ -415,6 +415,7 @@ DEPENDENCIES
   rubocop-rails
   sass-rails (>= 6)
   selenium-webdriver
+  simple_form
   skylight
   spring
   strip_attributes
