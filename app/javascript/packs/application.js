@@ -10,3 +10,7 @@ import "channels"
 
 Rails.start()
 ActiveStorage.start()
+
+$(document).on("turbolinks:load",function(){
+    $('[data-toggle="tooltip"]').tooltip()
+  })

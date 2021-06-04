@@ -5,8 +5,30 @@
     <div class="media-body mt-1">
         <h5 class="mt-0 text-info"><%= post.title %></h5>
         <p class="m-0"><%= truncate(post.body, length:240) %></p>
-        <div class="float-right mb-3">
-            <small class="text-muted">Posted on <%= post.created_at.strftime("%m-%d-%Y") %> at <%= post.created_at.strftime    ("%I:%M:%S") %> by <%= post.author.username %></small>
+        <div class="d-flex float-right mb-3">
+            <div class="p-0"> 
+                <%= link_to new_reply_path, class: "nav-link" do %>
+                <i class="fa fa-reply" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Reply"></i></i>
+                <% end %>
+            </div>
+            <div class="p-0"> 
+                <%= link_to votes_path, class: "nav-link" do %>
+                <i class="fa fa-thumbs-up" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Upvote"></i></i>
+                <% end %>
+            </div>
+            <div class="p-0"> 
+                <%= link_to votes_path, class: "nav-link" do %>
+                <i class="fa fa-thumbs-down" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Downvote"></i></i>
+                <% end %>
+            </div>
+            <div class="p-0"> 
+                <%= link_to new_follow_path, class: "nav-link" do %>
+                <i class="fa fa-thumb-tack" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Follow"></i></i>
+                <% end %>
+            </div>
+            <div class="p-2">
+                <small class="text-muted">Posted on <%= post.created_at.strftime("%m-%d-%Y") %> at <%= post.created_at.strftime    ("%I:%M:%S") %> by <%= post.author.username %></small>
+            </div>
         </div>
     </div>
 </div>
