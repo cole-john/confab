@@ -1,11 +1,12 @@
 {
-    "name": "Small Sharp Tool",
-    "description": "This app does one little thing, and does it well.",
-    "website": "https://small-sharp-tool.com/",
-    "repository": "https://github.com/jane-doe/small-sharp-tool",
-    "logo": "https://small-sharp-tool.com/logo.svg",
-    "success_url": "/welcome",
+    "name": "Confabulous Discussion Forum",
+    "repository": "https://github.com/cole-john/confab",
     "scripts": {
-      "postdeploy": "bundle exec rake db:migrate dev:prime"
-    }
+      "postdeploy": "bundle exec rake dev:prime"
+    },
+    "formation": {
+        "web": {
+          "quantity": 1
+        }
+}
 }
