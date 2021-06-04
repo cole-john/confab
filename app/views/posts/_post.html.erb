@@ -7,22 +7,22 @@
         <p class="m-0"><%= truncate(post.body, length:240) %></p>
         <div class="d-flex float-right mb-3">
             <div class="p-0"> 
-                <%= link_to new_reply_path, class: "nav-link" do %>
+                <%= link_to new_reply_path, class: "nav-link px-2" do %>
                 <i class="fa fa-reply" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Reply"></i></i>
                 <% end %>
             </div>
             <div class="p-0"> 
-                <%= link_to votes_path, class: "nav-link" do %>
+                <%= link_to votes_path, class: "nav-link px-2" do %>
                 <i class="fa fa-thumbs-up" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Upvote"></i></i>
                 <% end %>
             </div>
-            <div class="p-0"> 
-                <%= link_to votes_path, class: "nav-link" do %>
+            <div class="p-0">
+                <%= link_to votes_path, class: "nav-link px-2" do %>
                 <i class="fa fa-thumbs-down" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Downvote"></i></i>
                 <% end %>
             </div>
             <div class="p-0"> 
-                <%= link_to new_follow_path, class: "nav-link" do %>
+                <%= link_to new_follow_path, class: "nav-link px-2" do %>
                 <i class="fa fa-thumb-tack" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Follow"></i></i>
                 <% end %>
             </div>
