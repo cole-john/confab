@@ -1,0 +1,11 @@
+{
+    "name": "Small Sharp Tool",
+    "description": "This app does one little thing, and does it well.",
+    "website": "https://small-sharp-tool.com/",
+    "repository": "https://github.com/jane-doe/small-sharp-tool",
+    "logo": "https://small-sharp-tool.com/logo.svg",
+    "success_url": "/welcome",
+    "scripts": {
+      "postdeploy": "bundle exec rake db:migrate dev:prime"
+    }
+}
