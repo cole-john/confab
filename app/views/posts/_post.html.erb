@@ -1,8 +1,7 @@
 
-
-<div class="media border-top border-info">
-    <%= image_tag post.author.avatar_img, class: "align-self-start mr-3 post-avatar"%>
-    <div class="media-body mt-1">
+<div class="media border-top border-info pt-2">
+    <%= image_tag post.author.avatar_img, class: "mr-3 post-avatar"%>
+    <div class="media-body">
         <h5 class="mt-0 text-info"><%= post.title %></h5>
         <p class="m-0"><%= truncate(post.body, length:240) %></p>
         <div class="d-flex float-right mb-3">

@@ -3,9 +3,26 @@
 <div class="media">
     <%= image_tag reply.author.avatar_img, class: "align-self-start mr-3 reply-avatar"%>
     <div class="media-body">
-        <%= reply.body %>
-        <div class="mb-3">
-            <small class="text-muted">Posted on <%= reply.created_at.strftime("%m-%d-%Y") %> at <%= reply.created_at.strftime    ("%I:%M:%S") %> by <%= reply.author.username %></small>
+        <p class="m-0"><%= reply.body %></p>
+        <div class="d-flex pb-2 pl-3">
+            <div class="p-0 mt-0"> 
+                <%= link_to new_reply_path, class: "nav-link px-2" do %>
+                <i class="fa fa-reply fa-xs" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Reply"></i></i>
+                <% end %>
+            </div>
+            <div class="p-0"> 
+                <%= link_to votes_path, class: "nav-link px-2" do %>
+                <i class="fa fa-thumbs-up fa-xs" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Upvote"></i></i>
+                <% end %>
+            </div>
+            <div class="p-0">
+                <%= link_to votes_path, class: "nav-link px-2" do %>
+                <i class="fa fa-thumbs-down fa-xs" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Downvote"></i></i>
+                <% end %>
+            </div>
+            <div class="p-2">
+                <small class="text-muted">Posted on <%= reply.created_at.strftime("%m-%d-%Y") %> at <%= reply.created_at.strftime("%I:%M:%S") %> by <%= reply.author.username %></small>
+            </div>
         </div>
     </div>
 </div>
