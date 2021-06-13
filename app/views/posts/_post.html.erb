@@ -35,6 +35,5 @@
 <% post.replies.each do |reply| %>
     <div id="<%= reply.repliable_type.downcase %>_<%= reply.repliable_id %>_<%= dom_id(reply) %>" class="pl-5">
         <%= render "posts/reply", reply: reply %>
-        <%= render collection: reply.children, partial: "posts/reply", as: :reply %>
     </div>
 <% end %>

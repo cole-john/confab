@@ -3,7 +3,7 @@
 <div id="<%= reply.repliable_type.downcase%>_<%= reply.repliable_id%>_<%= dom_id(reply) %>" class="media">
     <%= image_tag reply.author.avatar_img, class: "align-self-start mr-3 reply-avatar"%>
     <div id="<%= dom_id(reply) %>_body" class="media-body">
-        <p class="m-0"><%= reply.body %></p>
+        <p class="m-0"><%= reply.repliable_id %> - <%= reply.id %> - <%= reply.body %></p>
         <div class="d-flex pb-2 pl-3">
             <div class="p-0 mt-0"> 
                 <%= link_to new_reply_path, class: "nav-link px-2" do %>
