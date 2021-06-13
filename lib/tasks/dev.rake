@@ -64,7 +64,7 @@ require 'faker'
       posts.each do |post|
         rand(3).times do
           reply = post.replies.create(
-            author_id: User.all.sample.id,
+            author: User.all.sample,
             body: Faker::Movies::PrincessBride.quote,
             repliable_type: "Post",
             repliable_id: post.id
@@ -120,15 +120,15 @@ require 'faker'
         rand(3).times do
           if rand < 0.5
             new_reply = reply.replies.create(
-              author_id: User.all.sample.id,
-              body: Faker::Hacker.say_something_smart,
+              author: User.all.sample,
+              body: Faker::TvShows::RickAndMorty.quote,
               repliable_type: "Reply",
               repliable_id: reply.id,
               parent_id: reply.id
             )
           else
               new_reply = reply.replies.create(
-                author_id: User.all.sample.id,
+                author: User.all.sample,
                 body: Faker::TvShows::RickAndMorty.quote,
                 repliable_type: "Reply",
                 repliable_id: reply.id,
@@ -137,7 +137,7 @@ require 'faker'
           end
           if rand <0.75
             another_reply = new_reply.replies.create(
-              author_id: User.all.sample.id,  
+              author: User.all.sample,  
               body: Faker::TvShows::RickAndMorty.quote,
               repliable_type: "Reply",
               repliable_id: new_reply.id,

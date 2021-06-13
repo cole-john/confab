@@ -1,8 +1,8 @@
 
 
-<div class="media">
+<div id="<%= reply.repliable_type.downcase%>_<%= reply.repliable_id%>_<%= dom_id(reply) %>" class="media">
     <%= image_tag reply.author.avatar_img, class: "align-self-start mr-3 reply-avatar"%>
-    <div class="media-body">
+    <div id="<%= dom_id(reply) %>_body" class="media-body">
         <p class="m-0"><%= reply.body %></p>
         <div class="d-flex pb-2 pl-3">
             <div class="p-0 mt-0"> 
