@@ -6,7 +6,7 @@
         <p class="m-0"><%= truncate(post.body, length:240) %></p>
         <div class="d-flex float-right">
             <div class="p-0"> 
-                <%= link_to new_reply_path, class: "nav-link px-2" do %>
+                <%= link_to new_post_reply_path(post.id), class: "nav-link px-2", remote: true do %>
                 <i class="fa fa-reply" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Reply"></i></i>
                 <% end %>
             </div>
@@ -21,7 +21,7 @@
                 <% end %>
             </div>
             <div class="p-0"> 
-                <%= link_to new_follow_path, class: "nav-link px-2" do %>
+                <%= link_to follows_path, class: "nav-link px-2" do %>
                 <i class="fa fa-thumb-tack" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Follow"></i></i>
                 <% end %>
             </div>

@@ -1,0 +1,8 @@
+$(document).ready(function(){
+
+    let new_reply = $("<%= j(render "replies/new_reply_form", reply: @reply) %>");
+
+    console.log("<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>");
+    $("#<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>").after(new_reply)
+
+});

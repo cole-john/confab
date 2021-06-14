@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RepliesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_reply, only: %i[show edit update destroy]
 
   # GET /replies or /replies.json
@@ -13,7 +14,28 @@ class RepliesController < ApplicationController
 
   # GET /replies/new
   def new
-    @reply = Reply.new
+    if params.has_key?(:post_id)
+      @reply = Reply.create(
+        author: current_user,
+        body: "",
+        repliable_id: params[:post_id],
+        repliable_type: "Post"
+      )
+    elsif params.has_key?(:reply_id)
+      @reply = Reply.create(
+        author: current_user,
+        body: "",
+        repliable_id: params[:reply_id],
+        repliable_type: "Reply"
+      )
+    else
+      @reply = Reply.new
+    end
+
+    respond_to do |format|
+      format.js {render template: "replies/new_reply.js"}
+    end
+
   end
 
   # GET /replies/1/edit
@@ -56,6 +78,7 @@ class RepliesController < ApplicationController
     end
   end
 
+  
   private
 
   # Use callbacks to share common setup or constraints between actions.

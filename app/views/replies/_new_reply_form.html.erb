@@ -1,0 +1,27 @@
+<%= form_with(model: @reply, :id => "new_reply_form", local: false) do |form| %>
+  
+  <% if reply.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
+
+      <ul>
+        <% reply.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="container">
+    <div class="row row-cols-lg-auto g-3 align-items-center">
+    <div class="col-10">
+      <label for="newReply">New Comment</label>
+      <textarea class="form-control" id="newReply" rows="2"></textarea>
+    </div>
+    <div class="col">
+      <%= form.submit "Reply", class: "btn btn-secondary btn-sm"%>
+    </div>
+  </div>
+
+<% end %>
