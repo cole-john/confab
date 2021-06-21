@@ -62,7 +62,6 @@ class PostsController < ApplicationController
 
   def favorites
     @user = User.find_by!(username: params.fetch(:username))
-
   end
 
   private

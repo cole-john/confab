@@ -14,14 +14,11 @@
 
 
   <div class="container">
-    <div class="row row-cols-lg-auto g-3 align-items-center">
-    <div class="col-10">
-      <label for="newReply">New Comment</label>
-      <textarea class="form-control" id="newReply" rows="2"></textarea>
-    </div>
-    <div class="col">
+    <div class="row row-cols-lg-auto g-1 align-items-center">
+        <div class=field>
+          <%= form.text_area :body %>
+        </div>
       <%= form.submit "Reply", class: "btn btn-secondary btn-sm"%>
-    </div>
   </div>
 
 <% end %>

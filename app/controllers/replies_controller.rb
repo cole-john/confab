@@ -14,30 +14,32 @@ class RepliesController < ApplicationController
 
   # GET /replies/new
   def new
-    if params.has_key?(:post_id)
-      @reply = Reply.create(
-        author: current_user,
-        body: "",
-        repliable_id: params[:post_id],
-        repliable_type: "Post"
-      )
-    elsif params.has_key?(:reply_id)
-      @reply = Reply.create(
-        author: current_user,
-        body: "",
-        repliable_id: params[:reply_id],
-        repliable_type: "Reply"
-      )
-    else
-      @reply = Reply.new
-    end
+    @reply = if params.key?(:post_id)
+               Reply.create(
+                 author: current_user,
+                 body: '',
+                 repliable_id: params[:post_id],
+                 repliable_type: 'Post'
+               )
+             elsif params.key?(:reply_id)
+               Reply.create(
+                 author: current_user,
+                 body: '',
+                 repliable_id: params[:reply_id],
+                 repliable_type: 'Reply'
+               )
+             else
+               Reply.new
+             end
 
     respond_to do |format|
-      format.js {render template: "replies/new_reply.js"}
+      format.js { render template: 'replies/new_reply.js' }
     end
-
   end
 
+
+
+  
   # GET /replies/1/edit
   def edit; end
 
@@ -49,6 +51,7 @@ class RepliesController < ApplicationController
       if @reply.save
         format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
         format.json { render :show, status: :created, location: @reply }
+        format.js { render template: 'replies/create.js.erb' }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @reply.errors, status: :unprocessable_entity }
@@ -78,7 +81,6 @@ class RepliesController < ApplicationController
     end
   end
 
-  
   private
 
   # Use callbacks to share common setup or constraints between actions.

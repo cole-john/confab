@@ -79,12 +79,12 @@ gem 'pry-rails'
 gem 'pundit'
 gem 'rack-canonical-host'
 gem 'rollbar'
-gem 'skylight'
 gem 'simple_form'
+gem 'skylight'
 gem 'strip_attributes'
 gem 'validate_url'
 
-#appdev gems
+# appdev gems
 # ==================
 group :development do
   # gem 'draft_generators', github: 'firstdraft/draft_generators', branch: 'winter-2020'
