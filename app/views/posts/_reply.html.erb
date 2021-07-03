@@ -6,7 +6,7 @@
         <p class="m-0"><%= reply.body %></p>
         <div class="d-flex pb-2 pl-3">
             <div class="p-0 mt-0"> 
-                <%= link_to new_reply_reply_path(reply.id), class: "nav-link px-2" do %>
+                <%= link_to new_reply_reply_path(reply.id), class: "nav-link px-2", remote: true  do %>
                 <i class="fa fa-reply fa-xs" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Reply"></i></i>
                 <% end %>
             </div>
@@ -28,5 +28,5 @@
 </div>
 
 <div class="pl-5">
-    <%= render collection: reply.children, partial: "posts/reply", as: :reply %>
+    <%= render collection: reply.children.order("created_at DESC"), partial: "posts/reply", as: :reply %>
 </div>

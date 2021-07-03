@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   resources :follows, only: %i[create update]
 
   # Available CRUD routes: index, show, new, edit, create, update, and destroy
-
+  
   get ':username/following' => 'posts#following', as: :following_posts
   get ':username/favorites' => 'posts#favorites', as: :favorite_posts
-
+  
   get '/:username' => 'users#show', as: :user
 end

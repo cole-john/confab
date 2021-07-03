@@ -18,6 +18,11 @@
         <div class=field>
           <%= form.text_area :body %>
         </div>
+        
+        <%= form.hidden_field :repliable_id, value: reply.repliable_id %>
+        <%= form.hidden_field :repliable_type, value: reply.repliable_type %>
+        <%= form.hidden_field :parent_id, value: reply.repliable_id %>
+
       <%= form.submit "Reply", class: "btn btn-secondary btn-sm"%>
   </div>
 

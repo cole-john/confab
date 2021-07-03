@@ -6,7 +6,7 @@ class RepliesController < ApplicationController
 
   # GET /replies or /replies.json
   def index
-    @replies = Reply.all
+    @replies = Reply.all.order("created_at DESC")
   end
 
   # GET /replies/1 or /replies/1.json
@@ -14,30 +14,31 @@ class RepliesController < ApplicationController
 
   # GET /replies/new
   def new
+
     @reply = if params.key?(:post_id)
-               Reply.create(
-                 author: current_user,
-                 body: '',
-                 repliable_id: params[:post_id],
-                 repliable_type: 'Post'
-               )
-             elsif params.key?(:reply_id)
-               Reply.create(
-                 author: current_user,
-                 body: '',
-                 repliable_id: params[:reply_id],
-                 repliable_type: 'Reply'
-               )
-             else
-               Reply.new
-             end
+      Reply.new(
+        author: current_user,
+        body: '',
+        repliable_id: params[:post_id],
+        repliable_type: 'Post'
+      )
+    elsif params.key?(:reply_id)
+      @parent_id = Reply.find(params[:reply_id]).repliable_id
+      @parent_type = Reply.find(params[:reply_id]).repliable_type.downcase
+      Reply.new(
+        author: current_user,
+        body: '',
+        repliable_id: params[:reply_id],
+        repliable_type: 'Reply'
+      )
+    else
+      Reply.new
+    end
 
     respond_to do |format|
       format.js { render template: 'replies/new_reply.js' }
     end
   end
-
-
 
   
   # GET /replies/1/edit
@@ -46,6 +47,7 @@ class RepliesController < ApplicationController
   # POST /replies or /replies.json
   def create
     @reply = Reply.new(reply_params)
+    @reply.author_id = current_user.id
 
     respond_to do |format|
       if @reply.save
@@ -90,6 +92,6 @@ class RepliesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def reply_params
-    params.require(:reply).permit(:author_id, :post_id, :body, :repliable_id)
+    params.require(:reply).permit(:post_id, :body, :repliable_id, :repliable_type, :parent_id)
   end
 end

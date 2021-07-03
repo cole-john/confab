@@ -32,7 +32,7 @@ namespace :dev do
         email: "#{username}@example.com",
         username: username.downcase,
         password: 'password',
-        avatar_img: "https://robohash.org/#{rand(9999)}",
+        avatar_img: "https://robohash.org/#{rand(9999)}?set=set5",
         bio: Faker::Hipster.paragraph,
         website: Faker::Internet.url(host: 'example.com')
       )
@@ -45,7 +45,8 @@ namespace :dev do
       rand(3).times do
         post = user.posts.create(
           title: Faker::Hipster.sentence,
-          body: Faker::Hipster.paragraph(sentence_count: rand(3..10))
+          body: Faker::Hipster.paragraph(sentence_count: rand(3..10)),
+          created_at: Faker::Time.between(from: DateTime.now - 10, to: DateTime.now-1)
         )
       end
     end
@@ -68,7 +69,8 @@ namespace :dev do
           author: User.all.sample,
           body: Faker::Movies::PrincessBride.quote,
           repliable_type: 'Post',
-          repliable_id: post.id
+          repliable_id: post.id,
+          created_at: Faker::Time.between(from: post.created_at, to: DateTime.now)
         )
       end
     end
@@ -125,7 +127,8 @@ namespace :dev do
                         body: Faker::TvShows::RickAndMorty.quote,
                         repliable_type: 'Reply',
                         repliable_id: reply.id,
-                        parent_id: reply.id
+                        parent_id: reply.id,
+                        created_at: Faker::Time.between(from: reply.created_at, to: DateTime.now)
                       )
                     else
                       reply.replies.create(
@@ -133,7 +136,8 @@ namespace :dev do
                         body: Faker::TvShows::RickAndMorty.quote,
                         repliable_type: 'Reply',
                         repliable_id: reply.id,
-                        parent_id: reply.id
+                        parent_id: reply.id,
+                        created_at: Faker::Time.between(from: reply.created_at, to: DateTime.now)
                       )
                     end
         next unless rand < 0.75
@@ -143,7 +147,8 @@ namespace :dev do
           body: Faker::TvShows::RickAndMorty.quote,
           repliable_type: 'Reply',
           repliable_id: new_reply.id,
-          parent_id: new_reply.id
+          parent_id: new_reply.id,
+          created_at: Faker::Time.between(from: new_reply.created_at, to: DateTime.now)
         )
       end
     end

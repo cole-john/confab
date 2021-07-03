@@ -1,8 +1,17 @@
 $(document).ready(function(){
-
+    
+    //console.log("<%= @parent_type %>_<%= @parent_id %>_<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>");
+    
     let new_reply = $("<%= j(render "replies/new_reply_form", reply: @reply) %>");
+    
 
-    console.log("<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>");
-    $("#<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>").after(new_reply)
+    // Need to determine whether reply is to a Post or Reply and add 'id' accordingly
 
+    // Post
+    //$("#<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>").after(new_reply)      
+    // Reply
+    $("#<%= @parent_type %>_<%= @parent_id %>_<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>").after(new_reply)
+
+    // Focus cursor to new reply form
+    //$("#new_reply_form").focus();
 });
