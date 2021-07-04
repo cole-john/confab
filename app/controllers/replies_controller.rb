@@ -15,24 +15,22 @@ class RepliesController < ApplicationController
   # GET /replies/new
   def new
 
-    @reply = if params.key?(:post_id)
-      Reply.new(
-        author: current_user,
-        body: '',
-        repliable_id: params[:post_id],
-        repliable_type: 'Post'
-      )
-    elsif params.key?(:reply_id)
+    @reply = Reply.new(
+      author: current_user,
+      body: ''
+    )
+    if params.key?(:post_id)
+      @parent_id = params[:post_id]
+      @parent_type = 'post'
+      @reply.author = current_user
+      @reply.repliable_id = params[:post_id]
+      @reply.repliable_type = 'Post'
+    else
       @parent_id = Reply.find(params[:reply_id]).repliable_id
       @parent_type = Reply.find(params[:reply_id]).repliable_type.downcase
-      Reply.new(
-        author: current_user,
-        body: '',
-        repliable_id: params[:reply_id],
-        repliable_type: 'Reply'
-      )
-    else
-      Reply.new
+      @reply.repliable_id = params[:reply_id]
+      @reply.repliable_type = 'Reply'
+      @reply.parent_id = params[:reply_id]
     end
 
     respond_to do |format|
@@ -40,7 +38,6 @@ class RepliesController < ApplicationController
     end
   end
 
-  
   # GET /replies/1/edit
   def edit; end
 
