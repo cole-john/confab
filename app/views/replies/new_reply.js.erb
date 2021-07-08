@@ -1,21 +1,17 @@
 $(document).ready(function(){
-
-    // For debugging
+    
     //console.log("<%= @parent_type %>_<%= @parent_id %>_<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>");
     
     let new_reply = $("<%= j(render "replies/new_reply_form", reply: @reply) %>");
     
+
     // Need to determine whether reply is to a Post or Reply and add 'id' accordingly
-    <% if @reply.repliable_type.downcase == 'post' %>
-        // Post
-        $("#<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>").after(new_reply)      
-    <% else %>
-        // Reply
-        $("#<%= @parent_type %>_<%= @parent_id %>_<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>").after(new_reply)
-    <% end %>
 
-    // Focus on new reply form
-    $(':focus').blur();
-    $("#new_reply_form").focus();
+    // Post
+    //$("#<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>").after(new_reply)      
+    // Reply
+    $("#<%= @parent_type %>_<%= @parent_id %>_<%= @reply.repliable_type.downcase %>_<%= @reply.repliable_id %>").after(new_reply)
 
+    // Focus cursor to new reply form
+    //$("#new_reply_form").focus();
 });
