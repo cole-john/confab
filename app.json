@@ -2,7 +2,7 @@
     "name": "Confabulous Discussion Forum",
     "repository": "https://github.com/cole-john/confab",
     "scripts": {
-      "postdeploy": "bundle exec rake dev:prime"
+      "postdeploy": "bundle exec rails dev:prime"
     },
     "formation": {
         "web": {
