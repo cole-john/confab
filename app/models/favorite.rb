@@ -24,5 +24,5 @@ class Favorite < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :favoritable, polymorphic: true
 
-  validates :user, :uniqueness => { :scope => [:favoritable_type, :favoritable_id] }
+  validates :user, uniqueness: { scope: %i[favoritable_type favoritable_id] }
 end

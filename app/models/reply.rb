@@ -33,7 +33,6 @@ class Reply < ApplicationRecord
   has_many :replies, as: :repliable, dependent: :destroy
   has_many :favorites, as: :favoritable, dependent: :destroy
 
-
   scope :by_replies, -> { order(replies_count: :desc) }
   scope :by_favorites, -> { order(favorites_count: :desc) }
   scope :by_votes, -> { order(votes_count: :desc) }

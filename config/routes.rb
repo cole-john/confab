@@ -4,15 +4,22 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   devise_for :users
-  resources :posts
-  resources :favorites
-  resources :votes
-  resources :replies
-  resources :follows
+  resources :posts do
+    resources :replies
+  end
 
-  get ":username/following" => "posts#following", as: :following_posts
-  get ":username/favorites" => "posts#favorites", as: :favorite_posts
+  resources :replies do
+    resources :replies
+  end
+  
+  resources :favorites, only: %i[create update]
+  resources :votes, only: %i[create update]
+  resources :follows, only: %i[create update]
 
-  get "/:username" => "users#show", as: :user
-
+  # Available CRUD routes: index, show, new, edit, create, update, and destroy
+  
+  get ':username/following' => 'posts#following', as: :following_posts
+  get ':username/favorites' => 'posts#favorites', as: :favorite_posts
+  
+  get '/:username' => 'users#show', as: :user
 end

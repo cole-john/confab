@@ -24,7 +24,7 @@
 #
 #  fk_rails_...  (author_id => users.id)
 #
-class Post < ApplicationRecord 
+class Post < ApplicationRecord
   belongs_to :author, class_name: 'User', counter_cache: true
 
   has_many :replies, as: :repliable, dependent: :destroy
@@ -39,6 +39,5 @@ class Post < ApplicationRecord
 
   scope :by_replies, -> { order(replies_count: :desc) }
   scope :by_favorites, -> { order(favorites_count: :desc) }
-  scope :by_votes, -> { order(votes_count: :desc) } 
-  
+  scope :by_votes, -> { order(votes_count: :desc) }
 end

@@ -1,19 +1,39 @@
 
-
-<div class="media border-top border-info">
-    <%= image_tag post.author.avatar_img, class: "align-self-start mr-3 post-avatar"%>
-    <div class="media-body mt-1">
+<div id="<%= dom_id(post) %>" class="media border-top border-info pt-2">
+    <%= image_tag post.author.avatar_img, class: "mr-3 post-avatar"%>
+    <div class="media-body">
         <h5 class="mt-0 text-info"><%= post.title %></h5>
         <p class="m-0"><%= truncate(post.body, length:240) %></p>
-        <div class="float-right mb-3">
-            <small class="text-muted">Posted on <%= post.created_at.strftime("%m-%d-%Y") %> at <%= post.created_at.strftime    ("%I:%M:%S") %> by <%= post.author.username %></small>
+        <div class="d-flex float-right">
+            <div class="p-0"> 
+                <%= link_to new_post_reply_path(post.id), class: "nav-link px-2", remote: true do %>
+                <i class="fa fa-reply" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Reply"></i></i>
+                <% end %>
+            </div>
+            <div class="p-0"> 
+                <%= link_to votes_path, class: "nav-link px-2" do %>
+                <i class="fa fa-thumbs-up" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Upvote"></i></i>
+                <% end %>
+            </div>
+            <div class="p-0">
+                <%= link_to votes_path, class: "nav-link px-2" do %>
+                <i class="fa fa-thumbs-down" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Downvote"></i></i>
+                <% end %>
+            </div>
+            <div class="p-0"> 
+                <%= link_to follows_path, class: "nav-link px-2" do %>
+                <i class="fa fa-thumb-tack" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Follow"></i></i>
+                <% end %>
+            </div>
+            <div class="p-2">
+                <small class="text-muted">Posted on <%= post.created_at.strftime("%m-%d-%Y") %> at <%= post.created_at.strftime    ("%I:%M:%S") %> by <%= post.author.username %></small>
+            </div>
         </div>
     </div>
 </div>
 
-<% post.replies.each do |reply| %>
+<% post.replies.order("created_at DESC").each do |reply| %>
     <div class="pl-5">
         <%= render "posts/reply", reply: reply %>
-        <%= render collection: reply.children, partial: "posts/reply", as: :reply %>
     </div>
 <% end %>

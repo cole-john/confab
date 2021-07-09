@@ -27,6 +27,5 @@ class Vote < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :votable, polymorphic: true
 
-
   enum vote_status: { down: 0, up: 1, star: 2 }
 end

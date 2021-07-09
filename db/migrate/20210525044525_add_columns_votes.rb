@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddColumnsVotes < ActiveRecord::Migration[6.1]
   def change
     add_reference :votes, :votable, polymorphic: true, null: false, index: true

@@ -48,7 +48,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
-  gem 'faker'
   gem 'rails-erd'
   gem 'rubocop'
   gem 'rubocop-performance'
@@ -73,17 +72,20 @@ gem 'active_link_to'
 gem 'ancestry'
 gem 'awesome_print'
 gem 'devise'
+gem 'faker'
 gem 'graphiti', '~> 1.2'
 gem 'graphviz'
+gem 'gravtastic'
 gem 'pry-rails'
 gem 'pundit'
 gem 'rack-canonical-host'
 gem 'rollbar'
+gem 'simple_form'
 gem 'skylight'
 gem 'strip_attributes'
 gem 'validate_url'
 
-#appdev gems
+# appdev gems
 # ==================
 group :development do
   # gem 'draft_generators', github: 'firstdraft/draft_generators', branch: 'winter-2020'
